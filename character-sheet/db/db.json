@@ -1,0 +1,25 @@
+{
+    "data": [
+      {
+        "name": "Sai",
+        "gender": "Male",
+        "race": "Goliath",
+        "class": "Druid",
+        "level": 5,
+        "str": 1,
+        "dex": 1,
+        "con": 1,
+        "int": 1,
+        "wis": 1,
+        "cha": 1,
+        "currentHp": 1,
+        "maxHp": 1,
+        "tempHp": 1,
+        "ac": 1,
+        "initiative": 1,
+        "speed": 1,
+        "defences": "",
+        "conditions": ""
+      }
+    ]
+  }
