@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react"
+import EditCharacterSheetHeader from "./components/EditCharacterSheetHeader"
+import EditCharacterSheetMain from "./components/EditCharacterSheetMain"
 
 function EditSheet(props) {
 
-  const {character} = props
+  const {character, setCharacter, initialMods, savingThrows} = props
 
   return (
-    
-    <main className="character-sheet-layout">
-    </main>
+    <section>
+        <EditCharacterSheetHeader character={character} setCharacter={setCharacter}/>
+        <EditCharacterSheetMain character={character} setCharacter={setCharacter} initialMods={initialMods} savingThrows={savingThrows} />
+    </section>
   )
 }
 

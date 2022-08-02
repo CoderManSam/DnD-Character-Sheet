@@ -1,8 +1,7 @@
 import { useState } from "react"
 import { Route, Routes } from "react-router";
 import { Link } from "react-router-dom";
-import CharacterSheetHeader from "./pages/CharacterSheet/components/CharacterSheetHeader";
-import CharacterSheetMain from "./pages/CharacterSheet/components/CharacterSheetMain";
+import CharacterSheet from "./pages/CharacterSheet";
 import EditSheet from "./pages/EditSheet";
 import "./styles.css"
 
@@ -14,49 +13,90 @@ export default function App() {
     race: "Goliath",
     class: "Druid",
     level: 5,
-    str: 1,
-    dex: 1,
-    con: 1,
-    int: 1,
-    wis: 1,
-    cha: 1,
-    currentHp: 1,
-    maxHp: 1,
-    tempHp: 1,
-    ac: 1,
-    initiative: 1,
-    speed: 1,
+    str: 18,
+    dex: 16,
+    con: 18,
+    int: 8,
+    wis: 10,
+    cha: 8,
+    currentHp: 44,
+    maxHp: 44,
+    tempHp: 0,
+    ac: 14,
+    initiative: "+3",
+    speed: 30,
     defences: "",
     conditions: ""
   }
 
   const [character, setCharacter] = useState(initialCharacter)
 
-  const d4 = [1, 2, 3, 4]
-  const d6 = [1, 2, 3, 4, 5, 6]
-  const d8 = [1, 2, 3, 4, 5, 6, 7, 8]
-  const d10 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-  const d12 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-  const d20 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+  const modDeterminer = {
+    0: "-5",
+    1: "-5",
+    2: "-4",
+    3: "-4",
+    4: "-3",
+    5: "-3",
+    6: "-2",
+    7: "-2",
+    8: "-1",
+    9: "-1",
+    10: "+0",
+    11: "+0",
+    12: "+1",
+    13: "+1",
+    14: "+2",
+    15: "+2", 
+    16: "+3",
+    17: "+3", 
+    18: "+4",
+    19: "+4",
+    20: "+5",
+    21: "+5",
+    22: "+6",
+    23: "+6",
+    24: "+7",
+    25: "+7",
+    26: "+8",
+    27: "+8",
+    28: "+9",
+    29: "+9",
+  }
 
-  const diceRoll = (dice) => {
+  const modifierDeterminer = (stat) => {
 
-    const roll = dice[Math.floor(Math.random()*dice.length)]
+    const statValue = character[stat]  
+  
+    const modValue = modDeterminer[statValue]
+    
+    return modValue 
+  }  
 
-    console.log("roll", roll)
+  const initialMods = {
+    strMod: modifierDeterminer("str"),
+    dexMod: modifierDeterminer("dex"),
+    conMod: modifierDeterminer("con"),
+    intMod: modifierDeterminer("int"),
+    wisMod: modifierDeterminer("wis"),
+    chaMod: modifierDeterminer("cha")
+  }
 
-    return roll
- }
-
-//  onClick={() => { diceRoll(d12) }}
+  const savingThrows = {
+    strSave: initialMods["strMod"],
+    dexSave: initialMods["dexMod"],
+    conSave: initialMods["conMod"],
+    intSave: initialMods["intMod"],
+    wisSave: initialMods["wisMod"],
+    chaSave: initialMods["chaMod"]
+  }
 
   return (
     <>
-      <CharacterSheetHeader character={character} setCharacter={setCharacter}/>
-      <CharacterSheetMain character={character} setCharacter={setCharacter}/>
+      {/* elements outside of the routes placed here will load in every page, if characterSheet is added here it'll load twice */}
       <Routes>
-        {/* <Route path="/" element={<CharacterSheet />}/> */}
-        <Route path="/edit" element={<EditSheet character={character} setCharacter={setCharacter}/>} />
+        <Route path="/" element={<CharacterSheet character={character} setCharacter={setCharacter} initialMods={initialMods} savingThrows={savingThrows}/>}/>
+        <Route path="/edit" element={<EditSheet character={character} setCharacter={setCharacter} initialMods={initialMods} savingThrows={savingThrows}/>} />
       </Routes>
     </>
   )

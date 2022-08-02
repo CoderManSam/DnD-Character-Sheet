@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom"
 
-function CharacterSheetHeader(props) {
+function EditCharacterSheetHeader(props) {
 
-  const {character} = props
+  const {character, setCharacter} = props
+
+//   NEXT STEP WOULD BE TO ADD INPUT FIELDS AND FUNCTIONS TO SETCHARACTER TO UPDATE STATE
+//    STEP AFTER THAT WOULD BE CSS/REFACTORING/ADDING NEXT PORTION OF SHEET
 
   return (
     <header className="character-header">
@@ -22,9 +25,9 @@ function CharacterSheetHeader(props) {
         <li>Defences: {character.defences}</li>
         <li>Conditions: {character.conditions}</li>
       </ul>
-      <Link to="/edit">Edit</Link>
+      <Link to="/">Read-only</Link>
     </header>
   )
 }
 
-export default CharacterSheetHeader
+export default EditCharacterSheetHeader
