@@ -17,10 +17,11 @@ function CharacterSheetHeader(props) {
         <li>Max HP: {character.maxHp}</li>
         <li>Temp HP: {character.tempHp}</li>
         <li>AC: {character.ac}</li>
-        <li>Initiative: {character.initiative}</li>
+        <li>Initiative: +{character.initiative}</li>
         <li>Walking Speed: {character.speed}ft</li>
         <li>Defences: {character.defences}</li>
         <li>Conditions: {character.conditions}</li>
+        <li>Proficiency Bonus: +{character.prof}</li>
       </ul>
       <Link to="/edit">Edit</Link>
     </header>

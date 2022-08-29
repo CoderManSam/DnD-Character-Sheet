@@ -23,10 +23,11 @@ export default function App() {
     maxHp: 44,
     tempHp: 0,
     ac: 14,
-    initiative: "+3",
+    initiative: 3,
     speed: 30,
     defences: "",
-    conditions: ""
+    conditions: "",
+    prof: 3
   }
 
   const [character, setCharacter] = useState(initialCharacter)
